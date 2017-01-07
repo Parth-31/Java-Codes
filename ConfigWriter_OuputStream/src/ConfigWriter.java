@@ -1,0 +1,27 @@
+import java.io.*;
+public class ConfigWriter {
+	String newline = System.getProperty("line.separator"); //Hey Dude! pay attention here...
+	ConfigWriter(){
+		try{
+			File file = new File("program.properties");
+			FileOutputStream fileStream = new FileOutputStream(file);
+			write(fileStream, "Username=Kai");
+			write(fileStream, "Score=12550");
+			write(fileStream, "level=5");
+		}catch(IOException ioe){
+			System.out.println("Could not write file");
+		}
+	}
+
+
+	void write(FileOutputStream stream, String output) throws IOException {
+			output += newline;
+			byte[] data = output.getBytes();
+			stream.write(data, 0, data.length);
+			
+		}
+	
+	public static void main(String[] args){
+		ConfigWriter cw = new ConfigWriter();
+	}
+}
